@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Cesium 3D Tiles Sample</title>
+    <!-- CesiumJS をCDNから読み込む -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.121/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.121/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+      html, body, #cesiumContainer {
+        width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cesiumContainer"></div>
+    <script>
+      // Cesiumビューアを作成
+      const viewer = new Cesium.Viewer('cesiumContainer', {
+        terrain: Cesium.Terrain.fromWorldTerrain()
+      });
+
+      // ここで3D Tiles（tileset.json）を読み込む
+      const tileset = viewer.scene.primitives.add(
+        new Cesium.Cesium3DTileset({
+          url: './tileset.json' // ← ファイルの場所に応じて修正
+        })
+      );
+
+      viewer.zoomTo(tileset);
+    </script>
+  </body>
+</html>
